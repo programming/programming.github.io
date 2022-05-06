@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CSS Minifier</title>
+<script type="text/javascript">
+function minify()
+{
+    document.getElementById("output").value = document.getElementById("input").value.trim().replace(/\s*(;|,|{|})\s*/g, '$1');
+}
+
+function reset()
+{
+	document.getElementById('input').value = '';
+	document.getElementById('output').value = '';
+}
+</script>
+</head>
+<body>
+<h1>CSS Minifier</h1>
+<p>Input</p>
+<p><textarea cols="80" rows="10" onclick="this.select()" id="input"></textarea></p>
+<p>Output</p>
+<p><textarea cols="80" rows="10" onclick="this.select()" style="background-color: #eee" id="output" readonly></textarea></p>
+<p>
+<button onclick="minify()">Minify</button>
+<button onclick="reset()">Reset</button>
+</p>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Character Count</title>
+<script type="text/javascript">
+function count() 
+{
+    var input = document.getElementById("input");
+    var characters = document.getElementById("characters");
+    var words = document.getElementById("words");
+    
+    if (input == null || input.value.length < 1)
+    {
+        words.innerHTML = 0;
+        characters.innerHTML = 0;
+    }
+    else
+    {
+        characters.innerHTML = input.value.length;
+        words.innerHTML = input.value.match(/\S+/g).length;        
+    }
+}
+</script>
+</head>
+<body>
+<h1>Character Count</h1>
+<p><textarea cols="56" rows="10" id="input" placeholder="Paste your text here or start typing" onkeydown="count();" onkeyup="count();"></textarea></p>
+<p style="display: inline">Words: <div style="display: inline" id="words">0</div></p>
+<p style="display: inline">Characters: <div style="display: inline" id="characters">0</div></p>
+</body>
+</html>

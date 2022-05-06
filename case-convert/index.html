@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Case Convert</title>
+<script type="text/javascript">
+function convert()
+{
+    var input = document.getElementById('input').value;
+    var selection = document.querySelector('input[name="format"]:checked').value;
+    
+    if (selection == "title") document.getElementById("output").value = input.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+    
+    if (selection == "upper") document.getElementById("output").value = input.toUpperCase();
+    
+    if (selection == "lower") document.getElementById("output").value = input.toLowerCase();
+}
+
+function reset()
+{
+    document.getElementById('input').value = '';
+    document.getElementById('output').value = '';
+}
+</script>
+</head>
+<body>
+<h1>Case Convert</h1>
+<p>Input</p>
+<input type="radio" name="format" value="upper" checked> UPPER
+<input type="radio" name="format" value="lower"> lower
+<input type="radio" name="format" value="title"> Title
+<p><textarea cols="80" rows="10" onclick="this.select()" id="input"></textarea></p>
+<p>Output</p>
+<p><textarea cols="80" rows="10" onclick="this.select()" style="background-color: #eee" id="output" readonly></textarea></p>
+<p>
+<button onclick="convert()">Convert</button>
+<button onclick="reset()">Reset</button>
+</p>
+</body>
+</html>

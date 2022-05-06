@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Random Number Generator</title>
+<script type="text/javascript">
+function generate()
+{
+    var min = new Number(document.getElementById("min").value);
+    var max = new Number(document.getElementById("max").value);
+    if (max<=min) alert("Invalid range!");
+    else document.getElementById('output').value = Math.floor(Math.random() * (max - min + 1) + min);
+}
+</script>
+</head>
+<body>
+<h1>Random Number Generator</h1>
+<p>Range from <input type="number" onclick="this.select()" id="min" value="1" min="0" step="1" onkeypress="return event.charCode >= 48 && event.charCode <= 57"> to <input type="number" onclick="this.select()" id="max" value="99" min="1" step="1" onkeypress="return event.charCode >= 48 && event.charCode <= 57"></p>
+<p>Your number: <input type="number" onclick="this.select()" id="output" style="background-color: #eee" readonly></p>
+<p><button onclick="generate()">Generate</button></p>
+</body>
+</html>

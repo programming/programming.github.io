@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Daniel Wellington Brand Name Generator</title>
+<script>
+var names = [
+'AIDEN',
+'ALEXANDER',
+'ALICE',
+'ALYSSA',
+'AMELIA',
+'ARCHIE',
+'ARLO',
+'ASHER',
+'ASTRID',
+'AVA',
+'AXEL',
+'ANNA',
+'BARNABY',
+'BENJAMIN',
+'BONNIE',
+'BRIANNA',
+'BALDWIN',
+'BELLWETHER',
+'BRANDON',
+'CALLIE',
+'CHARLIE',
+'CHARLOTTE',
+'CHLOE',
+'CODY',
+'CAMDEN',
+'CHADWICK',
+'COURTNEY',
+'DANIEL',
+'DELILAH',
+'DAISY',
+'DARWIN',
+'EDEN',
+'EDWARD',
+'ELIJAH',
+'ELLA',
+'ELODIE',
+'EMILY',
+'ETHAN',
+'EDGAR',
+'EDWARD',
+'FELIX',
+'FINLEY',
+'FINN',
+'FREYA',
+'GEORGE',
+'GRACE',
+'GRAYSON',
+'GRAHAM',
+'HARRISON',
+'HARRY',
+'HENDRIX',
+'HUDSON',
+'HAROLD',
+'HENRY',
+'HIGHBALL',
+'HILDA',
+'HOLLY',
+'IRIS',
+'ISABELLA',
+'ISABELLE',
+'JACK',
+'JACOB',
+'JAMES',
+'JESSICA',
+'JOSHUA',
+'JEFFREY',
+'KENDRA',
+'KENWAY',
+'LOGAN',
+'LEONARD',
+'MADDOX',
+'MARLEY',
+'MILO',
+'OAKLEY',
+'OLIVE',
+'OLIVER',
+'OLIVIA',
+'PHOEBE',
+'REMY',
+'REX',
+'ROMAN',
+'ROWAN',
+'RUBY',
+'RALPH',
+'RAYMOND',
+'ROWENA',
+'SAMUEL',
+'SOPHIA',
+'SOPHIE',
+'STELLA',
+'THEODORE',
+'THOMAS',
+'TOMMY',
+'VINNIE',
+'WILLIAM',
+'WALTER',
+'WILDA',
+'ZION',
+'ZOYA'];
+
+function generate() {
+    var name1 = names[Math.floor(Math.random()*names.length)];
+    var name2 = names[Math.floor(Math.random()*names.length)];
+    document.getElementById("output").innerHTML= name1 + ' ' + name2;
+    document.getElementById("whois").innerHTML= '<br /><small><a target="_new" href="https://www.whois.com/whois/' + name1.toLowerCase() + name2.toLowerCase() + '.com">Is the .com still available?</a></small>';
+}
+</script>
+</head>
+<body>
+<h1 id="output">DANIEL WELLINGTON BRAND NAME GENERATOR</h1>
+<button onclick="generate()">Generate</button>
+<div id="whois"></div>
+</body>
+
+<!-- inspired by https://imgur.com/a/6CNO8 -->
+</html>

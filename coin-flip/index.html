@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Coin Flip Simulator</title>
+<script type="text/javascript">
+function flip()
+{
+	f = document.getElementById('flips').value;
+
+	if (f < 0) f = 1;
+	else if (f > 99) f = 99;
+
+	document.getElementById('flips').value = f;
+	
+	output = "";
+
+	for ( i = 0; i < f; i++)
+	{
+		x = Math.floor(Math.random() * Math.floor(2));
+
+		if (x) {
+			output += "<li>heads</li>";
+		} else {
+			output += "<li>tails</li>";
+		}
+	}
+	
+	countH = (output.match(/heads/g) || []).length;
+	countT = (output.match(/tails/g) || []).length;	
+	
+	if (countH > countT) declaration = "Head wins!";	
+	else if (countH < countT) declaration = "Tail wins!";
+	else declaration = "It's a tie!"
+
+	document.getElementById('totalCount').innerHTML= "<p><strong>Heads:</strong> " + countH + " <strong>Tails:</strong> " + countT + "</p><p><strong>" + declaration + "</strong></p>";
+	document.getElementById('results').innerHTML= "<ol>" + output + "</ol>";
+}
+</script>
+</head>
+<body>
+<h1>Coin Flip Simulator</h1>
+<p>How many coins do you want to flip? <em>(1-99)</em></p>
+<p><input type="number" id="flips" value="1" step="1" min="1" max="99"> <button onclick="flip()">Flip</button></p>
+<div id="totalCount"></div>
+<div id="results"></div>
+</body>
+</html>

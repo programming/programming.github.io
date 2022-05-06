@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>WhatsApp Link Generator</title>
+<script type="text/javascript">
+function generate()
+{
+	var message = encodeURI(document.getElementById('message').value);
+	var tel = document.getElementById('phone').value
+				.replace('+','')
+				.replace('(','')
+				.replace(')','')
+				.replace('-','')
+				.replace(/\s+/g, '')
+				.replace(/^[0\.]+/, "");
+					
+	//ARGENTINA
+	/*
+	if (tel.startsWith("54")) {
+		var match = tel.indexOf("15");
+		
+		if (match !== -1)
+			tel = tel.slice(0, match) + tel.slice(match + 1);
+		
+		tel = tel.replace("54", "549");
+		
+		if (tel.length !== 13) {
+		}
+	}
+	*/
+	
+	//MEXICO
+	/*
+	if (tel.startsWith("52"))
+		tel = tel.replace("52", "521");
+	*/
+
+	if ((/[a-z]/i.test(tel)) || !tel) {
+		document.getElementById("output").value = 'Invalid input'
+	} else {
+		if (message) {
+			document.getElementById("output").value= 'https://wa.me/' + tel + '?text=' + message;
+		} else {
+			document.getElementById("output").value= 'https://wa.me/' + tel;
+		}
+	}
+}
+
+function reset()
+{
+	document.getElementById('phone').value = '';
+	document.getElementById('message').value = '';
+	document.getElementById('output').value = '';
+}
+</script>	
+</head>
+<body>
+<h1>WhatsApp Link Generator</h1>
+<p>
+<input type="text" id="phone" placeholder="Enter your phone number">
+<input type="text" id="message" placeholder="Enter your message">
+<button onclick="generate()">Generate</button>
+<button onclick="reset()">Reset</button>
+</p>
+<p><input type="text" onclick="this.select()" id="output" style="background-color: #eee" readonly></p>
+<p><small><a href="https://faq.whatsapp.com/general/chats/how-to-use-click-to-chat/">Reference</a></small></p>
+</body>
+</html>

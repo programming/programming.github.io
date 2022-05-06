@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Random String Generator</title>
+<script type="text/javascript">
+function generate()
+{
+    if (document.getElementById("length").value)
+    {
+        var result = '';
+        var characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        var length = parseInt(Math.abs(document.getElementById("length").value));
+        document.getElementById("length").value = length;
+        for (var i = length; i > 0; --i) result += characters[Math.floor(Math.random() * characters.length)];
+        document.getElementById("output").value = result;
+    } 
+    else
+    {
+        document.getElementById("output").setAttribute('placeholder', 'Please enter the number of characters.');
+    }
+}
+</script>
+</head>
+<body>
+<h1>Random String Generator</h1>
+<p>Number of characters: <input type="number" id="length" min="0" step="1" value="99" onclick="this.select();"></p>
+<p><textarea cols="80" rows="10" onclick="this.select()" style="background-color: #eee" id="output" readonly></textarea></p>
+<p><button onclick="generate()">Generate</button></p>
+</body>
+</html>

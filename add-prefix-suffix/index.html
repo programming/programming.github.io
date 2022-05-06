@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Add Prefix/Suffix</title>
+<script type="text/javascript">
+function process()
+{
+    var prefix = document.getElementById('prefix').value;
+    var suffix = document.getElementById('suffix').value;
+    var input = document.getElementById('input').value.replace(/\r/g, '').split(/\n/);
+    var array = new Array();
+    for (var x = 0; x < input.length; x++)
+    {
+        array[x] = prefix + input[x] + suffix;
+    }
+    document.getElementById('output').value = array.join('\n');
+}
+
+function reset()
+{
+    document.getElementById('input').value = '';
+    document.getElementById('output').value = '';
+    document.getElementById('prefix').value = '';
+    document.getElementById('suffix').value = '';
+}
+</script>
+</head>
+<body>
+<h1>Add Prefix/Suffix</h1>
+<p>Prefix: <input type="text" id="prefix"> &nbsp;&nbsp;Suffix: <input type="text" id="suffix"></p>
+<p>Input</p>
+<p><textarea cols="80" rows="10" onclick="this.select()" id="input" placeholder="Paste your list here, items separated by line breaks"></textarea></p>
+<p>Output</p>
+<p><textarea cols="80" rows="10" onclick="this.select()" style="background-color: #eee" id="output" readonly></textarea></p>
+<p>
+<button onclick="process()">Process</button>
+<button onclick="reset()">Reset</button>
+</p>
+</body>
+</html>

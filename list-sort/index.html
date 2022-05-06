@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>List Sort</title>
+<script type="text/javascript">
+function sort()
+{
+    var textarea = document.getElementById("input");
+    textarea.value = textarea.value.split("\n").sort().join("\n");
+}
+function reverse()
+{
+    var textarea = document.getElementById("input");
+    textarea.value = textarea.value.split("\n").sort().reverse().join("\n");
+}
+</script>
+</head>
+<body>
+<h1>List Sort</h1>
+<p><textarea cols="80" rows="10" onclick="this.select()" id="input" placeholder="Paste your list here, items separated by line breaks"></textarea></p>
+<p>
+<button onclick="sort()">Sort</button>
+<button onclick="reverse()">Reverse</button>
+</p>
+</body>
+</html>
