@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NRIC Generator</title>
+<script type="text/javascript">
+function generate() {
+	document.getElementById("result").innerHTML = '';
+	var stfg = document.querySelector('input[name="stfg"]:checked').value;
+	var prefixes;
+	if (stfg === 'st') prefixes = ['S', 'T'];	
+	else if (stfg === 'fg') prefixes = ['F', 'G'];
+	var prefix = prefixes[random(0,2)];
+	var digits = random(1000000, 9999999).toString();
+    var sum = 0;
+    var weights = [2, 7, 6, 5, 4, 3, 2];	
+    for (var i = 0; i < 7; i++) sum += digits[i] * weights[i];
+    var checkdigit = sum % 11;
+	if (prefix === 'S') { checkprefix = [ 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'Z', 'J' ]; }
+	else if (prefix === 'T') { checkprefix = [ 'H', 'I', 'Z', 'J', 'A', 'B', 'C', 'D', 'E', 'F', 'G' ]; }    
+	else if (prefix === 'F') { checkprefix = [ 'K', 'L', 'M', 'N', 'P', 'Q', 'R', 'T', 'U', 'W', 'X' ]; }    
+	else if (prefix === 'G') { checkprefix = [ 'T', 'U', 'W', 'X', 'K', 'L', 'M', 'N', 'P', 'Q', 'R' ]; }    	
+	var suffix = checkprefix[10 - checkdigit];    	
+	var nric = prefix + digits + suffix;
+	document.getElementById("nric").value = nric;
+}
+
+function random(min, max) {
+	var min = Math.ceil(min);
+	var max = Math.floor(max);
+	return Math.floor(Math.random() * (max - min)) + min;
+}
+
+function validate() {
+    var nric = document.getElementById("nric").value.toUpperCase();
+
+	if (nric) {
+		var digits = nric.slice(1, 8);
+		var sum = 0;
+		var weights = [2, 7, 6, 5, 4, 3, 2];
+		var stCheck = 'JZIHGFEDCBA';
+		var fgCheck = 'XWUTRQPNMLK';
+		var valid = false;
+		if (nric.length !== 9 || !['S', 'T', 'G', 'F'].includes(nric[0])) valid = false;
+		if (isNaN(digits)) valid = false;
+		if (['T', 'G'].includes(nric[0])) sum += 4;
+		for (var i = 0; i < digits.length; i++) sum += parseInt(digits.charAt(i), 10) * weights[i];
+		if (['S', 'T'].includes(nric[0])) valid = (stCheck.charAt(sum % 11) === nric[8]);
+		if (['F', 'G'].includes(nric[0])) valid = (fgCheck.charAt(sum % 11) === nric[8]);
+		
+		if (valid === true) document.getElementById("result").innerHTML = 'valid';
+		else if (valid === false) document.getElementById("result").innerHTML = 'invalid';				
+	}
+}
+</script>
+</head>
+<body>
+<h1>NRIC Generator</h1>
+<p><input type="text" id="nric" onclick="this.select()"> <input type="radio" name="stfg" value="st" checked>NRIC <input type="radio" name="stfg" value="fg">FIN</p>
+<p>
+<button onclick="generate()">Generate</button>
+<button onclick="validate()">Validate</button>
+</p>
+<span id="result"></span>
+
+<!--
+S0000001I,Yusof bin Ishak
+S0000002G,Wee Chong Jin
+S0000003E,Lee Kuan Yew
+S0000004C,Kwa Geok Choo
+S0000005A,Toh Chin Chye
+S0000006Z,Goh Keng Swee
+S0000007H,S Rajaratnam
+S0046428G,Goh Chok Tong
+S0016646D,Lee Hsien Loong
+S1096110F,Tang Liang Hong
+S0531156Z,Teo Siew Har
+S1136758E,Tony Tan Keng Yam
+S0406096B,Lee Yock Suan
+S0158131G,Teo Chee Hean
+S0816644G,Ch'ng Jit Koon
+S0036442H,Ow Chin Hock
+S0001050B,Chin Harn Tong
+S0398064B,Ker Sin Tze
+S0098408F,Seng Han Thong
+-->
+
+</body>
+</html>
