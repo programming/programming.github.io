@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>WhatsApp Link Generator</title>
 <script type="text/javascript">
+// Reference: https://faq.whatsapp.com/general/chats/how-to-use-click-to-chat/
 function generate()
 {
 	var message = encodeURI(document.getElementById('message').value);
@@ -65,6 +66,6 @@ function reset()
 <button onclick="reset()">Reset</button>
 </p>
 <p><input type="text" onclick="this.select()" id="output" style="background-color: #eee" readonly></p>
-<p><small><a href="https://faq.whatsapp.com/general/chats/how-to-use-click-to-chat/">Reference</a></small></p>
+<p><small><b>Bookmarklet:</b> <a id="bookmarklet" href='javascript:!function(){var e=prompt("Enter your phone number","").replace("+","").replace("(","").replace(")","").replace("-","").replace(/\s+/g,"").replace(/^[0\.]+/,"");e&&(location="https://wa.me/"+escape(e))}();'>Generate WhatsApp link</a><br />(drag it to your browser's bookmarks toolbar to keep it handy)</small></p>
 </body>
 </html>
